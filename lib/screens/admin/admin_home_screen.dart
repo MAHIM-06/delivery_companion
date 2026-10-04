@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'admin_orders_screen.dart';
 import 'admin_batches_screen.dart';
 import 'admin_products_screen.dart';
 
 import 'admin_delivery_persons_screen.dart';
+
+Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+  }
 
 class AdminHomeScreen extends StatelessWidget {
   const AdminHomeScreen({super.key});
@@ -17,7 +22,18 @@ class AdminHomeScreen extends StatelessWidget {
           'Admin Dashboard',
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: logout,
+
+            icon: const Icon(
+              Icons.logout,
+            ),
+          ),
+        ],
       ),
+
+  
 
       body: Padding(
         padding: const EdgeInsets.all(20),
